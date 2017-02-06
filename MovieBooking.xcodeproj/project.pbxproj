@@ -13,6 +13,12 @@
 		CBB853551E485C9700D199D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBB853541E485C9700D199D5 /* Assets.xcassets */; };
 		CBB853581E485C9700D199D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBB853561E485C9700D199D5 /* LaunchScreen.storyboard */; };
 		CBB853631E485C9700D199D5 /* MovieBookingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB853621E485C9700D199D5 /* MovieBookingTests.swift */; };
+		CBB853711E486B2D00D199D5 /* SeatActionCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB853701E486B2D00D199D5 /* SeatActionCallback.swift */; };
+		CBB853731E486B5000D199D5 /* Seat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB853721E486B5000D199D5 /* Seat.swift */; };
+		CBB853751E486CF900D199D5 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB853741E486CF900D199D5 /* State.swift */; };
+		CBB853781E48873100D199D5 /* SeatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB853771E48873100D199D5 /* SeatCell.swift */; };
+		CBB8537B1E48887200D199D5 /* SeatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB8537A1E48887200D199D5 /* SeatViewModel.swift */; };
+		CBB8537E1E48895900D199D5 /* AppUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB8537D1E48895900D199D5 /* AppUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +42,12 @@
 		CBB8535E1E485C9700D199D5 /* MovieBookingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieBookingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBB853621E485C9700D199D5 /* MovieBookingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieBookingTests.swift; sourceTree = "<group>"; };
 		CBB853641E485C9700D199D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CBB853701E486B2D00D199D5 /* SeatActionCallback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeatActionCallback.swift; sourceTree = "<group>"; };
+		CBB853721E486B5000D199D5 /* Seat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Seat.swift; sourceTree = "<group>"; };
+		CBB853741E486CF900D199D5 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		CBB853771E48873100D199D5 /* SeatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeatCell.swift; sourceTree = "<group>"; };
+		CBB8537A1E48887200D199D5 /* SeatViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeatViewModel.swift; sourceTree = "<group>"; };
+		CBB8537D1E48895900D199D5 /* AppUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +89,10 @@
 		CBB8534C1E485C9700D199D5 /* MovieBooking */ = {
 			isa = PBXGroup;
 			children = (
+				CBB8537C1E48894C00D199D5 /* Util */,
+				CBB853791E48886A00D199D5 /* ViewModel */,
+				CBB853761E48870A00D199D5 /* View */,
+				CBB8536D1E486ADB00D199D5 /* Model */,
 				CBB8534D1E485C9700D199D5 /* AppDelegate.swift */,
 				CBB8534F1E485C9700D199D5 /* ViewController.swift */,
 				CBB853511E485C9700D199D5 /* Main.storyboard */,
@@ -94,6 +110,56 @@
 				CBB853641E485C9700D199D5 /* Info.plist */,
 			);
 			path = MovieBookingTests;
+			sourceTree = "<group>";
+		};
+		CBB8536D1E486ADB00D199D5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CBB8536E1E486B0800D199D5 /* Action */,
+				CBB8536F1E486B0800D199D5 /* State */,
+				CBB853721E486B5000D199D5 /* Seat.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CBB8536E1E486B0800D199D5 /* Action */ = {
+			isa = PBXGroup;
+			children = (
+				CBB853701E486B2D00D199D5 /* SeatActionCallback.swift */,
+			);
+			path = Action;
+			sourceTree = "<group>";
+		};
+		CBB8536F1E486B0800D199D5 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				CBB853741E486CF900D199D5 /* State.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
+		CBB853761E48870A00D199D5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CBB853771E48873100D199D5 /* SeatCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CBB853791E48886A00D199D5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CBB8537A1E48887200D199D5 /* SeatViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CBB8537C1E48894C00D199D5 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				CBB8537D1E48895900D199D5 /* AppUtils.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,8 +265,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBB853711E486B2D00D199D5 /* SeatActionCallback.swift in Sources */,
 				CBB853501E485C9700D199D5 /* ViewController.swift in Sources */,
+				CBB853731E486B5000D199D5 /* Seat.swift in Sources */,
+				CBB8537E1E48895900D199D5 /* AppUtils.swift in Sources */,
+				CBB853751E486CF900D199D5 /* State.swift in Sources */,
+				CBB853781E48873100D199D5 /* SeatCell.swift in Sources */,
 				CBB8534E1E485C9700D199D5 /* AppDelegate.swift in Sources */,
+				CBB8537B1E48887200D199D5 /* SeatViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
