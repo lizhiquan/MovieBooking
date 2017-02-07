@@ -44,7 +44,13 @@ extension ViewController: UICollectionViewDataSource {
 
 extension ViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        viewModel.changeStateAt(position: indexPath.item)
-        collectionView.reloadData()
+        do {
+            try viewModel.changeStateAt(position: indexPath.item)
+            collectionView.reloadData()
+        } catch {
+            let alertController = UIAlertController(title: "Error", message: "Max number of seats exceeded", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
+            present(alertController, animated: true, completion: nil)
+        }
     }
 }

@@ -33,7 +33,16 @@ class SeatViewModel {
         }
     }
     
-    func changeStateAt(position: Int) {
+    func changeStateAt(position: Int) throws {
+        let isAvailableState = seats[position].state is AvailableState
+        let numberOfSelectedSeats = seats.filter({ $0.state is SelectedState }).count
+        if isAvailableState && numberOfSelectedSeats >= AppUtils.maxSelection {
+            throw SelectionError.ExceedMax
+        }
         seats[position].changeState()
+    }
+    
+    enum SelectionError: Error {
+        case ExceedMax
     }
 }
