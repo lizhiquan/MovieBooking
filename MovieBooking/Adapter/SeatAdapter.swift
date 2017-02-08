@@ -6,17 +6,15 @@
 //  Copyright © 2017 Chi-Quyen Le. All rights reserved.
 //
 
+import UIKit
+
 class SeatAdapter: SelectableAdapter {
     
-    private let seats: [Seat]
+    fileprivate let seats: [Seat]
     
     init(seats: [Seat], reachMaxCallback: ((Void) -> Void)?) {
         self.seats = seats
         super.init(maxSelection: AppUtils.maxSelection, reachMaxCallback: reachMaxCallback)
-    }
-    
-    var numberOfSeats: Int {
-        return seats.count
     }
     
     func seatTypeAt(position: Int) -> Seat.`Type` {
@@ -40,5 +38,26 @@ class SeatAdapter: SelectableAdapter {
                 seats[position].changeState()
             }
         }
+    }
+}
+
+extension SeatAdapter: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return seats.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! SeatCell
+        cell.configureCell(type: seatTypeAt(position: indexPath.item))
+        return cell
+    }
+}
+
+extension SeatAdapter: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        changeStateAt(position: indexPath.item)
+        collectionView.reloadItems(at: [indexPath])
     }
 }

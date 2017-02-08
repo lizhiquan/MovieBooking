@@ -28,25 +28,8 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         viewModel = SeatViewModel(dialogPresenter: DialogPresenter(vc: self))
-    }
-}
-
-extension ViewController: UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.numberOfSeats
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! SeatCell
-        cell.configureCell(type: viewModel.seatTypeAt(position: indexPath.item))
-        return cell
-    }
-}
-
-extension ViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        viewModel.didSelectSeatAt(position: indexPath.item)
-        collectionView.reloadData()
+        
+        collectionView.dataSource = viewModel.seatAdapter
+        collectionView.delegate = viewModel.seatAdapter
     }
 }

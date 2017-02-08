@@ -6,7 +6,9 @@
 //  Copyright © 2017 Chi-Quyen Le. All rights reserved.
 //
 
-class SelectableAdapter {
+import Foundation
+
+class SelectableAdapter: NSObject {
     
     let maxSelection: Int
     let reachMaxCallback: ((Void) -> Void)?
