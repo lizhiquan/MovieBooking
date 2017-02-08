@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
-    let viewModel = SeatViewModel(seats: AppUtils.fakeSeats())
+    var viewModel: SeatViewModel!
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -26,6 +26,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        viewModel = SeatViewModel(dialogPresenter: DialogPresenter(vc: self))
     }
 }
 
@@ -44,13 +46,7 @@ extension ViewController: UICollectionViewDataSource {
 
 extension ViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        do {
-            try viewModel.changeStateAt(position: indexPath.item)
-            collectionView.reloadData()
-        } catch {
-            let alertController = UIAlertController(title: "Error", message: "Max number of seats exceeded", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
-            present(alertController, animated: true, completion: nil)
-        }
+        viewModel.didSelectSeatAt(position: indexPath.item)
+        collectionView.reloadData()
     }
 }

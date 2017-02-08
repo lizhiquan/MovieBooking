@@ -8,41 +8,26 @@
 
 class SeatViewModel {
     
-    private let seats: [Seat]
+    private let dialogPresenter: DialogPresenter
     
-    init(seats: [Seat]) {
-        self.seats = seats
+    private let seatAdapter: SeatAdapter
+    
+    init(dialogPresenter: DialogPresenter) {
+        self.dialogPresenter = dialogPresenter
+        self.seatAdapter = SeatAdapter(seats: AppUtils.fakeSeats()) { () in
+            dialogPresenter.present(title: "Error", message: "Max number of seats exceeded", buttonTitle: "Close")
+        }
     }
     
     var numberOfSeats: Int {
-        return seats.count
+        return seatAdapter.numberOfSeats
     }
     
     func seatTypeAt(position: Int) -> Seat.`Type` {
-        switch seats[position].state {
-        case is AvailableState:
-            return .available
-        case is ReservedState:
-            return .reserved
-        case is EmptyState:
-            return .empty
-        case is SelectedState:
-            return .selected
-        default:
-            return .unknown
-        }
+        return seatAdapter.seatTypeAt(position: position)
     }
     
-    func changeStateAt(position: Int) throws {
-        let isAvailableState = seats[position].state is AvailableState
-        let numberOfSelectedSeats = seats.filter({ $0.state is SelectedState }).count
-        if isAvailableState && numberOfSelectedSeats >= AppUtils.maxSelection {
-            throw SelectionError.ExceedMax
-        }
-        seats[position].changeState()
-    }
-    
-    enum SelectionError: Error {
-        case ExceedMax
+    func didSelectSeatAt(position: Int) {
+        seatAdapter.changeStateAt(position: position)
     }
 }
